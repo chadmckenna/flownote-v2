@@ -1,6 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import { draculaTheme, draculaHighlightStyle } from "./dracula-codemirror-theme"
 
 import { basicSetup, EditorState, EditorView } from '@codemirror/basic-setup'
 import { markdown } from '@codemirror/lang-markdown'
@@ -18,7 +19,7 @@ const setupEditor = () => {
 
   const initialState = EditorState.create({
     doc: state.value,
-    extensions: [basicSetup, markdown(), onUpdate],
+    extensions: [basicSetup, markdown(), onUpdate, draculaTheme, draculaHighlightStyle],
   })
 
 
@@ -33,13 +34,17 @@ const setupEditor = () => {
 document.addEventListener('turbo:load', async (event) => {
   event.preventDefault()
 
+  if (Prism) {
+    setTimeout(Prism.highlightAll, 1)
+  }
+
   window.view = setupEditor()
 })
 
 document.addEventListener('turbo:before-stream-render', async (event) => {
-  if (PR) {
-    setTimeout(PR.prettyPrint, 1)
+  if (Prism) {
+    setTimeout(Prism.highlightAll, 1)
   }
 })
 
-
+window.view = setupEditor()

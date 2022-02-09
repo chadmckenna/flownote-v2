@@ -5,7 +5,7 @@ module CustomMarkdown
     def list_item(text, list_type)
       if text.start_with?("[x]", "[X]")
         text[0..2] = %(<input type="checkbox" checked="checked" disabled>)
-        %(<li><del>#{text}</del></li>)
+        %(<li><s>#{text}</s></li>)
       elsif text.start_with?("[ ]")
         text[0..2] = %(<input type="checkbox" disabled>)
         %(<li>#{text}</li>)
@@ -23,8 +23,8 @@ module CustomMarkdown
       if language.eql? 'mermaid'
         return %(<div class="mermaid">#{code}</div>)
       else
-        lang = language ? "lang-#{language}" : ""
-        return %(<pre class="prettyprint"><code class="#{lang}">#{ERB::Util.html_escape(code)}</code></pre>)
+        lang = language ? "language-#{language}" : ""
+        return %(<pre class="#{lang}"><code>#{ERB::Util.html_escape(code)}</code></pre>)
       end
     end
 
