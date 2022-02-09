@@ -1,6 +1,8 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import mermaid from "mermaid"
+
 import { draculaTheme, draculaHighlightStyle } from "./dracula-codemirror-theme"
 
 import { basicSetup, EditorState, EditorView } from '@codemirror/basic-setup'
@@ -31,20 +33,23 @@ const setupEditor = () => {
   return view
 }
 
-document.addEventListener('turbo:load', async (event) => {
-  event.preventDefault()
-
+const setupLibraries = () => {
   if (Prism) {
     setTimeout(Prism.highlightAll, 1)
   }
+  if (mermaid) {
+    setTimeout(mermaid.init, 1)
+  }
+}
 
-  window.view = setupEditor()
+document.addEventListener('turbo:load', async (event) => {
+  setupLibraries()
+  setupEditor()
 })
 
 document.addEventListener('turbo:before-stream-render', async (event) => {
-  if (Prism) {
-    setTimeout(Prism.highlightAll, 1)
-  }
+  setupLibraries()
 })
 
-window.view = setupEditor()
+setupLibraries()
+setupEditor()

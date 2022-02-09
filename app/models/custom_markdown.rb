@@ -21,7 +21,7 @@ module CustomMarkdown
 
     def block_code(code, language)
       if language.eql? 'mermaid'
-        return %(<div class="mermaid">#{code}</div>)
+        return %(<div class="mermaid">%%{init: {'theme':'dark'}}%%\n#{code}</div>)
       else
         lang = language ? "language-#{language}" : ""
         return %(<pre class="#{lang}"><code>#{ERB::Util.html_escape(code)}</code></pre>)
