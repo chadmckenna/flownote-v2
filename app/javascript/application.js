@@ -19,7 +19,7 @@ const setupEditor = () => {
 
   const initialState = EditorState.create({
     doc: state.value,
-    extensions: [basicSetup, markdown(), onUpdate, draculaTheme, draculaHighlightStyle],
+    extensions: [basicSetup, markdown(), onUpdate, draculaTheme, draculaHighlightStyle, EditorView.lineWrapping],
   })
 
 
