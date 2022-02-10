@@ -3,13 +3,12 @@ class NotesController < ApplicationController
 
   # GET /notes or /notes.json
   def index
-    @notes = Note.all
+    @notes = Note.all.order('updated_at DESC')
   end
 
   def by_tag
     @tag_name = params[:name]
-    tags = Tag.where(name: @tag_name)
-    @notes = tags.map(&:note)
+    @notes = Note.joins(:tags).where(tags: { name: @tag_name }).order('updated_at DESC')
   end
 
   # GET /notes/1 or /notes/1.json

@@ -3,6 +3,8 @@
     <p>
       <%= link_to note.title, note %>
       <%= link_to "[Edit]", edit_note_path(note) %>
+      <br>
+      Last updated: <%= time_tag note.updated_at, "data-local": "time-ago" %>
     </p>
   <% end %>
 </div>

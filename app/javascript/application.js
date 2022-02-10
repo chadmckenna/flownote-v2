@@ -8,6 +8,8 @@ import { draculaTheme, draculaHighlightStyle } from "./dracula-codemirror-theme"
 import { basicSetup, EditorState, EditorView } from '@codemirror/basic-setup'
 import { markdown } from '@codemirror/lang-markdown'
 
+import LocalTime from 'local-time'
+
 const setupEditor = () => {
   const state = document.getElementById('editor-state')
 
@@ -53,3 +55,5 @@ document.addEventListener('turbo:before-stream-render', async (event) => {
 
 setupLibraries()
 setupEditor()
+
+LocalTime.start()
