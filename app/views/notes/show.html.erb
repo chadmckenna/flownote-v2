@@ -1,9 +1,5 @@
 <%= turbo_stream_from @note %>
 
-<%- if notice %>
-  <p style="color: green"><%= notice %></p>
-<%- end %>
-
 <nav>
   <ul>
     <li><%= link_to "Edit this note", edit_note_path(@note) %></li>

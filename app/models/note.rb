@@ -1,5 +1,6 @@
 class Note < ApplicationRecord
   broadcasts
+  belongs_to :user
   has_many :tags, dependent: :destroy
 
   before_save :set_tags
@@ -32,6 +33,6 @@ class Note < ApplicationRecord
     to_add = updated_tag_names - current_tag_names
     to_remove = current_tag_names - updated_tag_names
     tags.where(name: to_remove).destroy_all
-    tags << to_add.map{|n| Tag.new(name: n)}
+    tags << to_add.map{|n| Tag.new(name: n, user: user)}
   end
 end

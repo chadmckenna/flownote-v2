@@ -1,14 +1,15 @@
 class NotesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_note, only: %i[ show edit update destroy ]
 
   # GET /notes or /notes.json
   def index
-    @notes = Note.all.order('updated_at DESC')
+    @notes = Note.where(user: current_user).order('updated_at DESC')
   end
 
   def by_tag
     @tag_name = params[:name]
-    @notes = Note.joins(:tags).where(tags: { name: @tag_name }).order('updated_at DESC')
+    @notes = Note.joins(:tags).where(user: current_user, tags: { name: @tag_name }).order('updated_at DESC')
   end
 
   # GET /notes/1 or /notes/1.json
@@ -22,7 +23,7 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-    @note = Note.new
+    @note = Note.new(user: current_user)
   end
 
   # GET /notes/1/edit
@@ -70,11 +71,11 @@ class NotesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note
-      @note = Note.find(params[:id])
+      @note = Note.find_by!(id: params[:id], user: current_user)
     end
 
     # Only allow a list of trusted parameters through.
     def note_params
-      params.require(:note).permit(:title, :content)
+      params.require(:note).permit(:title, :content).merge(user_id: current_user.id)
     end
 end
