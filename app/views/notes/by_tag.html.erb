@@ -1,0 +1,16 @@
+<h1>Notes by tag</h1>
+
+<%- if notice %>
+  <p style="color: green"><%= notice %></p>
+<%- end %>
+
+<nav>
+  <ul>
+    <li><%= link_to "All notes", notes_path %></li>
+    <li><%= link_to "New note", new_note_path %></li>
+  </ul>
+</nav>
+
+<p>By tag name: <kbd>#<%= @tag_name %></kbd></p>
+
+<%= render "notes", notes: @notes %>

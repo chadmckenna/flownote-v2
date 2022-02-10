@@ -1,7 +1,5 @@
 module CustomMarkdown
   class CustomHTML < Redcarpet::Render::HTML
-    TAG_REGEX = /(?:^|\s)(?:#)([\w\-\d]+)/i
-
     def list_item(text, list_type)
       if text.start_with?("[x]", "[X]")
         text[0..2] = %(<input type="checkbox" checked="checked" disabled>)
@@ -15,7 +13,7 @@ module CustomMarkdown
     end
 
     def paragraph(text)
-      text.gsub!(TAG_REGEX, '<kbd>#\1</kbd>')
+      text.gsub!(Tag::TAG_REGEX, '<kbd><a href="/notes/by_tag/\1">#\1</a></kbd>')
       return %(<p>#{text}</p>)
     end
 

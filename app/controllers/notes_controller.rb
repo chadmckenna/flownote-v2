@@ -6,8 +6,19 @@ class NotesController < ApplicationController
     @notes = Note.all
   end
 
+  def by_tag
+    @tag_name = params[:name]
+    tags = Tag.where(name: @tag_name)
+    @notes = tags.map(&:note)
+  end
+
   # GET /notes/1 or /notes/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json
+      format.md { render plain: @note.to_markdown }
+    end
   end
 
   # GET /notes/new

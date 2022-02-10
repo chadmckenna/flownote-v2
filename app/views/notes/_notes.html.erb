@@ -1,0 +1,8 @@
+<div id="notes">
+  <% notes.each do |note| %>
+    <p>
+      <%= link_to note.title, note %>
+      <%= link_to "[Edit]", edit_note_path(note) %>
+    </p>
+  <% end %>
+</div>
