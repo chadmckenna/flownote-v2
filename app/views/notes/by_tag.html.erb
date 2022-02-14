@@ -8,9 +8,12 @@
   <ul>
     <li><%= link_to "All notes", notes_path %></li>
     <li><%= link_to "New note", new_note_path %></li>
+    <%= render "note_tags", tag_names: @tag_names %>
   </ul>
 </nav>
 
-<p>By tag name: <kbd>#<%= @tag_name %></kbd></p>
+<p>By tag <%= "name".pluralize @nested_tag_names.size %>: <%= @nested_tag_names.map.with_index{|n, i| "<kbd>#{link_to n, by_tag_notes_path(names: @nested_tag_names[0..i])}</kbd>"}.join("/").html_safe %></p>
+
+<p><%= @possible_tag_names.map{|n| "<kbd>#{link_to n, by_tag_notes_path(names: [*@nested_tag_names, n])}</kbd>"}.join().html_safe %></p>
 
 <%= render "notes", notes: @notes %>

@@ -1,7 +1,10 @@
 <h1>Notes</h1>
 
 <nav>
-  <ul><li><%= link_to "New note", new_note_path %></li></ul>
+  <ul>
+    <li><%= link_to "New note", new_note_path %></li>
+    <%= render "note_tags", tag_names: @tag_names %>
+  </ul>
 </nav>
 
 <%= render "notes", notes: @notes %>

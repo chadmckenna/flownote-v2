@@ -1,0 +1,10 @@
+<%- unless tag_names.empty? %>
+  <li>
+    <span>All tags</span>
+    <ul>
+      <%- tag_names.each do |name| %>
+        <li><%= link_to "#{name}", by_tag_notes_path(names: name) %></li>
+      <%- end %>
+    </ul>
+  </li>
+<%- end %>

@@ -4,12 +4,20 @@ class NotesController < ApplicationController
 
   # GET /notes or /notes.json
   def index
+    @tag_names = Tag.where(user: current_user).order('name ASC').map(&:name).uniq
     @notes = Note.where(user: current_user).order('updated_at DESC')
   end
 
   def by_tag
-    @tag_name = params[:name]
-    @notes = Note.joins(:tags).where(user: current_user, tags: { name: @tag_name }).order('updated_at DESC')
+    @nested_tag_names = params[:names].split('/')
+    @tag_names = Tag.where(user: current_user).order('name ASC').map(&:name).uniq
+    @notes = @nested_tag_names.map do |name|
+      Note
+        .joins(:tags)
+        .where(user: current_user)
+        .where(tags: { name: name })
+    end.reduce(:&)
+    @possible_tag_names = @notes.flat_map(&:tags).flat_map(&:name).uniq.sort - @nested_tag_names
   end
 
   # GET /notes/1 or /notes/1.json
