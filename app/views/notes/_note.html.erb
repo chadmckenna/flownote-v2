@@ -3,6 +3,8 @@
     <h1><%= note.title %></h1>
   </p>
 
+  <p>Updated: <%= time_tag note.updated_at, "data-local": "time-ago" %></p>
+
   <article>
     <%= note.to_html %>
   </article>

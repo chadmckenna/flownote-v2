@@ -23,3 +23,8 @@ nav.main ul {
   justify-content: space-between;
   width: calc(var(--max-body-width) + 1rem);
 }
+
+nav ul li ul {
+  max-height: 30rem;
+  overflow-y: auto;
+}
