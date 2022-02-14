@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     collection do
       get 'by_tag/*names', to: 'notes#by_tag', as: 'by_tag'
     end
+    member do
+      post :make_public, to: 'notes#make_public'
+      post :make_private, to: 'notes#make_private'
+    end
   end
 
   root to: "notes#index"

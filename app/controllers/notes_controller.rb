@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_note, only: %i[ show edit update destroy ]
+  before_action :set_note, only: %i[ show edit update destroy make_public make_private ]
 
   # GET /notes or /notes.json
   def index
@@ -73,6 +73,30 @@ class NotesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to notes_url, notice: "Note was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def make_public
+    respond_to do |format|
+      if @note.update(public: true)
+        format.html { redirect_to note_url(@note), notice: "Note was successfully set to public." }
+        format.json { render :show, status: :ok, location: @note }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @note.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def make_private
+    respond_to do |format|
+      if @note.update(public: false)
+        format.html { redirect_to note_url(@note), notice: "Note was successfully set to private." }
+        format.json { render :show, status: :ok, location: @note }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @note.errors, status: :unprocessable_entity }
+      end
     end
   end
 

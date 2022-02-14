@@ -15,13 +15,13 @@
   </head>
 
   <body>
-    <%- if notice %>
+    <% if notice %>
       <p style="color: green"><%= notice %></p>
-    <%- end %>
-    <%- if alert %>
+    <% end %>
+    <% if alert %>
       <p style="color: red"><%= alert %></p>
-    <%- end %>
-    <%- if user_signed_in? %>
+    <% end %>
+    <% if user_signed_in? %>
       <nav class="main">
         <ul>
           <div>
@@ -34,7 +34,7 @@
           </div>
         </ul>
       </nav>
-    <%- end %>
+    <% end %>
     <main>
       <%= yield %>
     </main>

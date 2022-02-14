@@ -4,6 +4,7 @@ class Note < ApplicationRecord
   has_many :tags, dependent: :destroy
 
   before_save :set_tags
+  before_create :set_slug
 
   def to_html
     Redcarpet::Markdown.new(
@@ -34,5 +35,12 @@ class Note < ApplicationRecord
     to_remove = current_tag_names - updated_tag_names
     tags.where(name: to_remove).destroy_all
     tags << to_add.map{|n| Tag.new(name: n, user: user)}
+  end
+
+  def set_slug
+    loop do
+      self.slug = SecureRandom.alphanumeric(6)
+      break unless Note.where(slug: slug).exists?
+    end
   end
 end
