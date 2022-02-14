@@ -1,0 +1,7 @@
+<% notes.each do |note| %>
+  <p>
+    <%= link_to note.title, share_path(user: note.user.username, slug: note.slug) %>
+    <br>
+    Last updated: <%= time_tag note.updated_at, "data-local": "time-ago" %>
+  </p>
+<% end %>

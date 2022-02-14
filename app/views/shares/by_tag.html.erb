@@ -1,0 +1,13 @@
+<h1><%= "~#{@user.username}" %>'s public notes by tag</h1>
+
+<nav>
+  <ul>
+    <li><%= link_to "All ~#{@user.username}'s notes", shares_path(user: @user.username) %></li>
+  </ul>
+</nav>
+
+<p>By tag <%= "name".pluralize @nested_tag_names.size %>: <%= @nested_tag_names.map.with_index{|n, i| "<kbd>#{link_to n, shares_by_tag_path(user: @user.username, names: @nested_tag_names[0..i])}</kbd>"}.join("/").html_safe %></p>
+
+<p><%= @possible_tag_names.map{|n| "<kbd>#{link_to n, shares_by_tag_path(user: @user.username, names: [*@nested_tag_names, n])}</kbd>"}.join().html_safe %></p>
+
+<%= render "notes", notes: @notes %>

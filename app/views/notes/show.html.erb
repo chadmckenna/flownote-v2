@@ -5,7 +5,7 @@
     <li><%= link_to "Edit this note", edit_note_path(@note) %></li>
     <li><%= link_to "Back to notes", notes_path %></li>
     <% if @note.public %>
-      <li><%= text_field_tag 'Share URL', note_url(@note), size: 14 %><li>
+      <li><%= text_field_tag 'Share URL', share_url(user: @note.user.username, slug: @note.slug), size: 14 %><li>
       <li><%= button_to "Make private", make_private_note_path(@note), method: :post %></li>
     <% else %>
       <li><%= button_to "Make public", make_public_note_path(@note), method: :post %></li>

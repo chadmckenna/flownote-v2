@@ -1,4 +1,13 @@
 module CustomMarkdown
+  DEFAULTS = {
+    autolink: true,
+    no_intra_emphasis: true,
+    tables: true,
+    strikethrough: true,
+    space_after_headers: true,
+    fenced_code_blocks: true
+  }
+
   class CustomHTML < Redcarpet::Render::HTML
     def list_item(text, list_type)
       if text.start_with?("[x]", "[X]")
@@ -39,6 +48,18 @@ module CustomMarkdown
       end
 
       %(<div><div>#{img_src}</div><div>#{alt_text}</div></div>)
+    end
+  end
+
+  class CustomShareHTML < CustomHTML
+    def initialize(options, share_user)
+      @share_user = share_user
+      super options
+    end
+
+    def paragraph(text)
+      text.gsub!(Tag::TAG_REGEX, "<kbd><a href='/~#{@share_user.username}/by_tag/\\1'>#\\1</a></kbd>")
+      return %(<p>#{text}</p>)
     end
   end
 end

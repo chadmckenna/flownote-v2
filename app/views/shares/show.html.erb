@@ -1,0 +1,18 @@
+<nav>
+  <ul>
+    <li><%= link_to "~#{@note.user.username}'s public notes", shares_path(user: @note.user.username) %></li>
+  </ul>
+</nav>
+
+<div id="<%= dom_id @note %>">
+  <p>
+    <h1><%= @note.title %></h1>
+  </p>
+
+  <p>Updated: <%= time_tag @note.updated_at, "data-local": "time-ago" %></p>
+
+  <article>
+    <%= @note.to_share_html %>
+  </article>
+
+</div>
