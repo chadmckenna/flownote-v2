@@ -5,6 +5,7 @@ pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
 pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
+pin_all_from "app/javascript/extras", under: "extras"
 pin "@codemirror/basic-setup", to: "https://ga.jspm.io/npm:@codemirror/basic-setup@0.19.1/dist/index.js"
 pin "@codemirror/autocomplete", to: "https://ga.jspm.io/npm:@codemirror/autocomplete@0.19.12/dist/index.js"
 pin "@codemirror/closebrackets", to: "https://ga.jspm.io/npm:@codemirror/closebrackets@0.19.0/dist/index.js"

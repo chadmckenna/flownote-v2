@@ -3,7 +3,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import mermaid from "mermaid"
 
-import { draculaTheme, draculaHighlightStyle } from "./dracula-codemirror-theme"
+import { draculaTheme, draculaHighlightStyle } from "extras/dracula-codemirror-theme"
 
 import { basicSetup, EditorState, EditorView } from '@codemirror/basic-setup'
 import { markdown } from '@codemirror/lang-markdown'

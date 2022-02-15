@@ -12,12 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2022_02_14_223222) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "notes", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.boolean "public", default: false
     t.string "slug"
     t.index ["user_id"], name: "index_notes_on_user_id"
@@ -25,10 +28,10 @@ ActiveRecord::Schema.define(version: 2022_02_14_223222) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
-    t.integer "note_id", null: false
+    t.bigint "note_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["note_id"], name: "index_tags_on_note_id"
     t.index ["user_id"], name: "index_tags_on_user_id"
   end
