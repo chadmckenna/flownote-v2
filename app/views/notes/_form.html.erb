@@ -1,6 +1,6 @@
 <%= form_with(model: note) do |form| %>
   <% if note.errors.any? %>
-    <div style="color: red">
+    <p style="color: red">
       <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
 
       <ul>
@@ -8,23 +8,23 @@
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
-    </div>
+    </p>
   <% end %>
 
-  <div>
+  <p>
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
+    <%= form.text_field :title, tabindex: 0 %>
+  </p>
 
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content, style: "display: none", id: 'editor-state' %>
-    <div id="editor" />
-  </div>
+  <p>
+    <div>
+      <%= form.label :content, style: "display: block" %>
+      <%= form.text_area :content, style: "display: none", id: 'editor-state' %>
+      <div id="editor"/>
+    </div>
+  </p>
 
-  <br>
-
-  <div>
+  <p>
     <%= form.submit %>
-  </div>
+  </p>
 <% end %>

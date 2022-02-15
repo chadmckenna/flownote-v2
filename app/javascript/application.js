@@ -4,6 +4,7 @@ import "controllers"
 import mermaid from "mermaid"
 
 import { draculaTheme, draculaHighlightStyle } from "extras/dracula-codemirror-theme"
+import { setupKeybindings } from "extras/keybindings"
 
 import { basicSetup, EditorState, EditorView } from '@codemirror/basic-setup'
 import { markdown } from '@codemirror/lang-markdown'
@@ -26,11 +27,14 @@ const setupEditor = () => {
     extensions: [basicSetup, markdown(), onUpdate, draculaTheme, draculaHighlightStyle, EditorView.lineWrapping],
   })
 
-
   const view = new EditorView({
     parent: document.getElementById('editor'),
     state: initialState,
   })
+
+  const title = document.getElementById('note_title')
+
+  if (title) title.focus()
 
   return view
 }
@@ -47,6 +51,7 @@ const setupLibraries = () => {
 document.addEventListener('turbo:load', async (event) => {
   setupLibraries()
   setupEditor()
+  setupKeybindings()
 })
 
 document.addEventListener('turbo:before-stream-render', async (event) => {
@@ -55,5 +60,6 @@ document.addEventListener('turbo:before-stream-render', async (event) => {
 
 setupLibraries()
 setupEditor()
+setupKeybindings()
 
 LocalTime.start()
