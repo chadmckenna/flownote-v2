@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '~:user/by_tag/*names', to: 'shares#by_tag', as: 'shares_by_tag'
 
   get '/', to: 'notes#index', as: 'user'
+  get '/', to: 'notes#index', as: 'users'
 
   root to: "notes#index"
 end
