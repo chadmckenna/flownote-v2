@@ -4,6 +4,8 @@
   </ul>
 </nav>
 
+<%= turbo_stream_from @note %>
+
 <div id="<%= dom_id @note %>">
   <p>
     <h1><%= @note.title %></h1>
