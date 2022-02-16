@@ -1,0 +1,5 @@
+<div style="margin-top: 0.3rem">
+  <% tags.each do |tag| %>
+    <kbd><%= link_to tag.name, by_tag_notes_path(names: tag.name) %></kbd>
+  <% end %>
+</div>
