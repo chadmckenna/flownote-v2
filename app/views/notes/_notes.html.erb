@@ -7,7 +7,7 @@
         <div>
           Last updated: <%= time_tag note.updated_at, "data-local": "time-ago" %>
         </div>
-        <%= render "tags", tags: note.tags %>
+        <%= render "notes/tags", tags: note.tags %>
       </div>
     </p>
   <% end %>

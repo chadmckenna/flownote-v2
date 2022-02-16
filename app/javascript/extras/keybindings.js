@@ -11,6 +11,10 @@ export const setupKeybindings = () => {
       Turbo.visit('/notes')
     }
 
+    if (e.ctrlKey && e.key === '\\') {
+      Turbo.visit('/search')
+    }
+
     if (notesShowRegEx.test(window.location.pathname)) {
       if (e.ctrlKey && e.key === 'i') {
         Turbo.visit(`/notes/${notesShowRegEx.exec(window.location.pathname)[2]}/edit`)

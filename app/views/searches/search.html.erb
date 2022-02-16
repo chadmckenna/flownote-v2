@@ -1,0 +1,15 @@
+<%= form_with model: @search, url: "/search", method: :get do |form| %>
+  <p>
+    <%= form.text_field :query, value: @query, placeholder: 'Search...', style: 'display: block' %>
+  </p>
+
+  <p>
+    <%= form.submit "Search", name: nil %>
+  </p>
+<% end %>
+
+<% if @notes.empty? %>
+  <h4>There are no results for your search.<h4>
+<% else %>
+  <%= render 'notes/notes', notes: @notes %>
+<% end %>

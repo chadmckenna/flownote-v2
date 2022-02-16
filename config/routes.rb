@@ -18,5 +18,7 @@ Rails.application.routes.draw do
   get '/', to: 'notes#index', as: 'user'
   get '/', to: 'notes#index', as: 'users'
 
+  get '/search', to: 'searches#search', as: 'search'
+
   root to: "notes#index"
 end

@@ -46,6 +46,9 @@ const setupLibraries = () => {
   if (mermaid) {
     setTimeout(mermaid.init, 1)
   }
+  if (document.getElementById('query')) {
+    document.getElementById('query').focus()
+  }
 }
 
 document.addEventListener('turbo:load', async (event) => {
