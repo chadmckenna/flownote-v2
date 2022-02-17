@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   end
 
   get '~:user', to: 'shares#index', as: 'shares'
-  get '~:user/:slug', to: 'shares#show', as: 'share'
-  get '~:user/by_tag/*names', to: 'shares#by_tag', as: 'shares_by_tag'
+  get '~:user/n/:slug', to: 'shares#show', as: 'share'
+  get '~:user/t/*names', to: 'shares#by_tag', as: 'shares_by_tag'
 
   get '/', to: 'notes#index', as: 'user'
   get '/', to: 'notes#index', as: 'users'

@@ -58,7 +58,7 @@ module CustomMarkdown
     end
 
     def paragraph(text)
-      text.gsub!(Tag::TAG_REGEX, "<kbd><a href='/~#{@share_user.username}/by_tag/\\1'>#\\1</a></kbd>")
+      text.gsub!(Tag::TAG_REGEX, "<kbd><a href='/~#{@share_user.username}/t/\\1'>#\\1</a></kbd>")
       return %(<p>#{text}</p>)
     end
   end
