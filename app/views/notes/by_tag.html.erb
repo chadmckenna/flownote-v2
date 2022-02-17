@@ -9,8 +9,15 @@
   </ul>
 </nav>
 
-<p>By tag <%= "name".pluralize @nested_tag_names.size %>: <%= @nested_tag_names.map.with_index{|n, i| "<kbd>#{link_to n, by_tag_notes_path(names: @nested_tag_names[0..i])}</kbd>"}.join("/").html_safe %></p>
-
-<p><%= @possible_tag_names.map{|n| "<kbd>#{link_to n, by_tag_notes_path(names: [*@nested_tag_names, n])}</kbd>"}.join().html_safe %></p>
+<p>By <%= "tag".pluralize @nested_tag_names.size %>:
+  <% @nested_tag_names.each do |n| %>
+    <% if @nested_tag_names.size == 1 %>
+      <kbd class="remove_tag"><%= link_to n, notes_path %></kbd>
+    <% else %>
+      <kbd class="remove_tag"><%= link_to n, by_tag_notes_path(names: @nested_tag_names - [n]) %></kbd>
+    <% end %>
+  <% end %>
+  <%= @possible_tag_names.map{|n| "<kbd class='add_tag'>#{link_to n, by_tag_notes_path(names: [*@nested_tag_names, n])}</kbd>"}.join().html_safe %>
+</p>
 
 <%= render "notes", notes: @notes %>

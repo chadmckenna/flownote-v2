@@ -17,7 +17,6 @@
 nav.main {
   border-bottom: none;
 }
-
 nav.main ul {
   display: flex;
   justify-content: space-between;
@@ -35,7 +34,6 @@ nav ul li ul {
   padding: unset;
   margin: unset;
 }
-
 .button_as_link:hover {
   background-color: unset !important;
   color: var(--link-hover-color);
@@ -43,6 +41,17 @@ nav ul li ul {
   margin: unset;
 }
 
-.hover:hover {
+.note:hover {
   background-color: #44475A40;
+}
+
+.add_tag {
+  opacity: 0.4;
+}
+.remove_tag:hover {
+  opacity: 0.4;
+  border-color: red;
+}
+.remove_tag:hover a {
+  color: red;
 }
