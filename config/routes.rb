@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: "notes#index"
+
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout' }
 
   resources :notes do
@@ -19,6 +21,4 @@ Rails.application.routes.draw do
   get '/', to: 'notes#index', as: 'users'
 
   get '/search', to: 'searches#search', as: 'search'
-
-  root to: "notes#index"
 end

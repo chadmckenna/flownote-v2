@@ -31,7 +31,7 @@
               <li><%= link_to "🗒 Notes", notes_path, style: "margin-right: 0.4rem" %></li>
               <li><%= link_to "🔍 Search", search_path, style: "margin-right: 0.4rem" %></li>
               <li><%= link_to "🛠 Account", edit_user_registration_path(current_user), style: "margin-right: 0.4rem" %></li>
-              <li><%= link_to '🚪 Logout', destroy_user_session_path, data: { "turbo-method": :delete } %></li>
+              <li><%= button_to '🚪 Logout', destroy_user_session_path, method: :delete, class: 'button_as_link' %></li>
             </div>
           <% elsif @share_user %>
             <div>

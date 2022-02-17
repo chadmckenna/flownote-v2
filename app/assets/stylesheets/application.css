@@ -29,6 +29,20 @@ nav ul li ul {
   overflow-y: auto;
 }
 
+.button_as_link {
+  background-color: unset;
+  color: var(--link-color);
+  padding: unset;
+  margin: unset;
+}
+
+.button_as_link:hover {
+  background-color: unset !important;
+  color: var(--link-hover-color);
+  padding: unset;
+  margin: unset;
+}
+
 .hover:hover {
   background-color: #44475A40;
 }
