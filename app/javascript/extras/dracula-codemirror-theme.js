@@ -37,6 +37,8 @@ export const draculaTheme = EditorView.theme({
 
   '.cm-content': {caretColor: config.cursor},
 
+  '.cm-scroller': {overflow: 'auto', maxHeight: '62vh' },
+
   '&.cm-focused .cm-cursor': {borderLeftColor: config.cursor},
   '&.cm-focused .cm-selectionBackground, .cm-selectionBackground, & ::selection': {backgroundColor: config.selection},
 
