@@ -30,6 +30,7 @@ export const config = {
 
 export const draculaTheme = EditorView.theme({
   '&': {
+    fontSize: '0.9rem',
     color: config.foreground,
     backgroundColor: config.background,
   },
@@ -102,7 +103,7 @@ export const draculaHighlightStyle = HighlightStyle.define([
   {tag: t.strong, fontWeight: 'bold'},
   {tag: t.emphasis, fontStyle: 'italic'},
   {tag: t.link, textDecoration: 'underline'},
-  {tag: t.heading, fontWeight: 'bold', color: config.heading},
+  {tag: t.heading, fontWeight: 'bold', color: config.heading, fontSize: '1rem'},
   {tag: [t.atom, t.bool, t.special(t.variableName)], color: config.variable},
   {tag: t.invalid, color: config.invalid},
   {tag: t.strikethrough, textDecoration: 'line-through'},
