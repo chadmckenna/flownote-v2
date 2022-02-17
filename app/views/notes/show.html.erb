@@ -10,7 +10,7 @@
     <% else %>
       <li><%= button_to "Make public", make_public_note_path(@note), method: :post %></li>
     <% end %>
-    <li><%= button_to "Destroy this note", @note, method: :delete %></li>
+    <li><%= button_to "Delete", @note, style: "background-color: red", method: :delete, form: { data: { 'turbo-confirm': 'Are you sure?' } } %></li>
   </ul>
 </nav>
 
