@@ -23,7 +23,11 @@ export const setupKeybindings = () => {
 
     if (notesEditRegEx.test(window.location.pathname) || notesNewRegEx.test(window.location.pathname)) {
       if (e.ctrlKey && e.key === 'w') {
-        document.forms[0].submit()
+        Object.values(document.forms).forEach((f) => {
+          if (f.id === 'note_edit_form') {
+            f.submit()
+          }
+        })
       }
     }
   }
