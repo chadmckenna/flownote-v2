@@ -1,8 +1,8 @@
 class SharesController < ApplicationController
-  before_action :set_user
+  before_action :set_share_user
 
   def show
-    @note = Note.find_by!(slug: params[:slug], user: @user, public: true)
+    @note = Note.find_by!(slug: params[:slug], user: @share_user, public: true)
 
     respond_to do |format|
       format.html
@@ -12,7 +12,7 @@ class SharesController < ApplicationController
   end
 
   def index
-    @notes = Note.where(user: @user, public: true).order('updated_at DESC')
+    @notes = Note.where(user: @share_user, public: true).order('updated_at DESC')
   end
 
   def by_tag
@@ -20,7 +20,7 @@ class SharesController < ApplicationController
     @notes = @nested_tag_names.map do |name|
       Note
         .joins(:tags)
-        .where(user: @user, public: true)
+        .where(user: @share_user, public: true)
         .where(tags: { name: name })
     end.reduce(:&)
 
@@ -28,7 +28,7 @@ class SharesController < ApplicationController
   end
 
   private
-  def set_user
-    @user = User.find_by!(username: params[:user])
+  def set_share_user
+    @share_user = User.find_by!(username: params[:user])
   end
 end

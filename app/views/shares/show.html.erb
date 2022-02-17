@@ -1,9 +1,3 @@
-<nav>
-  <ul>
-    <li><%= link_to "~#{@note.user.username}'s public notes", shares_path(user: @note.user.username) %></li>
-  </ul>
-</nav>
-
 <%= turbo_stream_from @note %>
 
 <div id="<%= dom_id @note %>">

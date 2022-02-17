@@ -1,14 +1,15 @@
-<div id="notes">
-  <% notes.each do |note| %>
-    <p>
+<% notes.each do |note| %>
+  <div class="hover" style="padding: 0.5rem;">
+    <div style="display: flex; justify-content: space-between;">
+      <%= link_to note.title, note %>
       <div>
-        <%= link_to note.title, note %>
-        <%= link_to "[Edit]", edit_note_path(note) %>
-        <div>
-          Last updated: <%= time_tag note.updated_at, "data-local": "time-ago" %>
-        </div>
-        <%= render "notes/tags", tags: note.tags %>
+        <%= link_to "Edit", edit_note_path(note) %>
       </div>
-    </p>
-  <% end %>
-</div>
+    </div>
+    <div>
+      Last updated: <%= time_tag note.updated_at, "data-local": "time-ago" %>
+    </div>
+      <%= render "notes/tags", tags: note.tags %>
+    </div>
+  </div>
+<% end %>

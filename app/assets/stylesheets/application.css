@@ -28,3 +28,7 @@ nav ul li ul {
   max-height: 30rem;
   overflow-y: auto;
 }
+
+.hover:hover {
+  background-color: #44475A40;
+}

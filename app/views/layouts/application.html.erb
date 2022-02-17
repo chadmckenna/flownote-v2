@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Fn2</title>
+    <title>Flownote v2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -21,21 +21,25 @@
     <% if alert %>
       <p style="color: red"><%= alert %></p>
     <% end %>
-    <% if user_signed_in? %>
       <nav class="main">
         <ul>
           <div>
-            <li>Flownote v2</li>
+            <li style="display: flex; align-content: center; font-size: 1.2rem">Flownote <kbd style="font-size: .9rem; margin-left: 0.4rem;">v2</kbd></li>
           </div>
-          <div>
-            <li><%= link_to "[Notes]", notes_path %></li>
-            <li><%= link_to "[Search]", search_path %></li>
-            <li><%= link_to "[Account]", edit_user_registration_path(current_user) %></li>
-            <li><%= link_to '[Logout]', destroy_user_session_path, data: { "turbo-method": :delete } %></li>
-          </div>
+          <% if user_signed_in? %>
+            <div>
+              <li><%= link_to "🗒 Notes", notes_path, style: "margin-right: 0.4rem" %></li>
+              <li><%= link_to "🔍 Search", search_path, style: "margin-right: 0.4rem" %></li>
+              <li><%= link_to "🛠 Account", edit_user_registration_path(current_user), style: "margin-right: 0.4rem" %></li>
+              <li><%= link_to '🚪 Logout', destroy_user_session_path, data: { "turbo-method": :delete } %></li>
+            </div>
+          <% elsif @share_user %>
+            <div>
+              <li><%= link_to "~#{@share_user.username}'s public notes", shares_path(user: @share_user.username) %></li>
+            </div>
+          <% end %>
         </ul>
       </nav>
-    <% end %>
     <main>
       <%= yield %>
     </main>
