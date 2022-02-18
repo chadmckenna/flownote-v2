@@ -21,25 +21,23 @@
     <% if alert %>
       <p style="color: red"><%= alert %></p>
     <% end %>
-      <nav class="main">
-        <ul>
-          <div>
-            <li style="display: flex; align-content: center; font-size: 1.2rem">Flownote <kbd style="font-size: .9rem; margin-left: 0.4rem;">v2</kbd></li>
-          </div>
-          <% if user_signed_in? %>
-            <div>
-              <li><%= link_to "🗒 Notes", notes_path, style: "margin-right: 0.4rem" %></li>
-              <li><%= link_to "🔍 Search", search_path, style: "margin-right: 0.4rem" %></li>
-              <li><%= link_to "🛠 Account", edit_user_registration_path(current_user), style: "margin-right: 0.4rem" %></li>
-              <li><%= button_to '🚪 Logout', destroy_user_session_path, method: :delete, class: 'button_as_link' %></li>
-            </div>
-          <% elsif @share_user %>
-            <div>
-              <li><%= link_to "~#{@share_user.username}'s public notes", shares_path(user: @share_user.username) %></li>
-            </div>
-          <% end %>
-        </ul>
-      </nav>
+    <div class="nav_main">
+      <ul>
+        <span>
+          <li style="display: flex; align-content: center;"><span id="title" style="font-size: 1.2rem">Flownote</span><kbd style="font-size: 0.7rem !important; margin-left: 0.2rem">v2</kbd></li>
+        </span>
+      <% if user_signed_in? %>
+        <span style="display: flex; justify-content: end;">
+          <li><%= link_to "🗒 Notes", notes_path, style: "margin-right: 0.4rem" %></li>
+          <li><%= link_to "🔍 Search", search_path, style: "margin-right: 0.4rem" %></li>
+          <li><%= link_to "🛠 Account", edit_user_registration_path(current_user), style: "margin-right: 0.4rem" %></li>
+          <li><%= button_to '🚪Logout', destroy_user_session_path, method: :delete, class: 'button_as_link' %></li>
+        </span>
+      <% elsif @share_user %>
+        <li><%= link_to "~#{@share_user.username}'s public notes", shares_path(user: @share_user.username) %></li>
+      <% end %>
+      </ul>
+    </div>
     <main>
       <%= yield %>
     </main>

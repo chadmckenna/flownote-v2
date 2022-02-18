@@ -14,13 +14,21 @@
  *= require_self
  */
 
-nav.main {
-  border-bottom: none;
-}
-nav.main ul {
+.nav_main ul {
   display: flex;
   justify-content: space-between;
-  width: calc(var(--max-body-width) + 1rem);
+  padding-left: 0
+}
+.nav_main ul li {
+  display: inline-block;
+  text-align: center;
+}
+
+@media screen and (max-width: 375px) {
+  .nav_main ul li { font-size: 0.9rem }
+  .nav_main #title {
+    display: none;
+  }
 }
 
 nav ul li ul {
