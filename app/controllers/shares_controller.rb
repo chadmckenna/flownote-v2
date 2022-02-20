@@ -1,6 +1,8 @@
 class SharesController < ApplicationController
   before_action :set_share_user
 
+  include Paginate
+
   def show
     @note = Note.find_by!(slug: params[:slug], user: @share_user, public: true)
 
@@ -12,7 +14,7 @@ class SharesController < ApplicationController
   end
 
   def index
-    @notes = Note.where(user: @share_user, public: true).order('updated_at DESC')
+    @notes = paginate(Note.where(user: @share_user, public: true).order('updated_at DESC'))
   end
 
   def by_tag

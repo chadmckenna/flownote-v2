@@ -1,11 +1,18 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_note, only: %i[ show edit update destroy make_public make_private ]
+  before_action :set_note, only: %i[ show edit update destroy make_public make_private]
+
+  include Paginate
 
   # GET /notes or /notes.json
   def index
     @tag_names = Tag.where(user: current_user).order('name ASC').map(&:name).uniq
-    @notes = Note.where(user: current_user).order('updated_at DESC')
+    @notes = paginate(
+      Note
+        .includes(:tags)
+        .where(user: current_user)
+        .order('updated_at DESC')
+    )
   end
 
   def by_tag
