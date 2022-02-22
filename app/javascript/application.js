@@ -9,8 +9,6 @@ import { setupKeybindings } from "extras/keybindings"
 import { basicSetup, EditorState, EditorView } from '@codemirror/basic-setup'
 import { markdown } from '@codemirror/lang-markdown'
 
-import LocalTime from 'local-time'
-
 const setupEditor = () => {
   const state = document.getElementById('editor-state')
 
@@ -65,4 +63,3 @@ setupLibraries()
 setupEditor()
 setupKeybindings()
 
-LocalTime.start()

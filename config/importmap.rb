@@ -40,4 +40,3 @@ pin "@lezer/javascript", to: "https://ga.jspm.io/npm:@lezer/javascript@0.15.3/di
 pin "@lezer/lr", to: "https://ga.jspm.io/npm:@lezer/lr@0.15.7/dist/index.js"
 pin "@lezer/markdown", to: "https://ga.jspm.io/npm:@lezer/markdown@0.15.4/dist/index.js"
 pin "mermaid", to: "https://ga.jspm.io/npm:mermaid@8.13.10/dist/mermaid.esm.min.mjs"
-pin "local-time", to: "https://ga.jspm.io/npm:local-time@2.1.0/app/assets/javascripts/local-time.js"
