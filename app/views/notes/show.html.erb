@@ -3,6 +3,7 @@
 <nav>
   <ul>
     <li><%= link_to "Edit", edit_note_path(@note) %></li>
+    <li><%= link_to "History", history_note_path(@note) %></li>
     <% if @note.public %>
       <li><%= text_field_tag 'Share URL', share_url(user: @note.user.username, slug: @note.slug), size: 14 %><li>
       <li><%= button_to "Make private", make_private_note_path(@note), method: :post %></li>

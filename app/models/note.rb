@@ -2,9 +2,11 @@ class Note < ApplicationRecord
   broadcasts
   belongs_to :user
   has_many :tags, dependent: :destroy
+  has_one :history, dependent: :destroy
 
-  before_save :set_tags
   before_create :set_slug
+  before_update :append_to_history, if: -> { will_save_change_to_attribute? :content }
+  before_save :set_tags
 
   def to_html
     Redcarpet::Markdown.new(
@@ -37,6 +39,24 @@ class Note < ApplicationRecord
     to_remove = current_tag_names - updated_tag_names
     tags.where(name: to_remove).destroy_all
     tags << to_add.map{|n| Tag.new(name: n, user: user)}
+  end
+
+  def append_to_history
+    diff = Diffy::Diff.new(
+      content_change_to_be_saved.first,
+      content_change_to_be_saved.last,
+      context: 1,
+      include_plus_and_minus_in_html: true
+    ).to_s(:html)
+
+    diff.prepend "<time datetime='#{updated_at.to_json}'>Updated at: #{updated_at}</time>"
+
+    if history
+      history.content_diff.prepend diff
+      history.save
+    else
+      history = History.create(note_id: id, content_diff: diff)
+    end
   end
 
   def set_slug

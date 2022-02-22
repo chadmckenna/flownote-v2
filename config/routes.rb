@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do
       post :make_public, to: 'notes#make_public'
       post :make_private, to: 'notes#make_private'
+      get :history, to: 'notes#history'
     end
   end
 

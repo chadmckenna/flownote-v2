@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_note, only: %i[ show edit update destroy make_public make_private]
+  before_action :set_note, only: %i[ show edit update destroy history make_public make_private]
 
   include Paginate
 
@@ -34,6 +34,10 @@ class NotesController < ApplicationController
       format.json
       format.md { render plain: @note.to_markdown }
     end
+  end
+
+  def history
+    @history = @note.history
   end
 
   # GET /notes/new

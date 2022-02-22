@@ -1,0 +1,12 @@
+<nav style="margin-bottom: 2rem">
+  <ul>
+    <li><%= link_to "Show", @note %></li>
+    <li><%= link_to "Edit", edit_note_path(@note) %></li>
+  </ul>
+</nav>
+
+<% if @history %>
+  <%= @history.content_diff.html_safe %>
+<% else %>
+  <h4>No history for this note</h4>
+<% end %>
