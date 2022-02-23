@@ -4,7 +4,6 @@ class NotesController < ApplicationController
 
   include Paginate
 
-  # GET /notes or /notes.json
   def index
     @tag_names = Tag.where(user: current_user).order('name ASC').map(&:name).uniq
     @notes = paginate(
@@ -13,6 +12,11 @@ class NotesController < ApplicationController
         .where(user: current_user)
         .order('updated_at DESC')
     )
+  end
+
+  def all
+    @notes = Note.where(user: current_user)
+    render :index
   end
 
   def by_tag
@@ -27,7 +31,6 @@ class NotesController < ApplicationController
     @possible_tag_names = @notes.flat_map(&:tags).flat_map(&:name).uniq.sort - @nested_tag_names
   end
 
-  # GET /notes/1 or /notes/1.json
   def show
     respond_to do |format|
       format.html
@@ -40,16 +43,13 @@ class NotesController < ApplicationController
     @history = @note.history
   end
 
-  # GET /notes/new
   def new
     @note = Note.new(user: current_user)
   end
 
-  # GET /notes/1/edit
   def edit
   end
 
-  # POST /notes or /notes.json
   def create
     @note = Note.new(note_params)
 
@@ -64,7 +64,6 @@ class NotesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /notes/1 or /notes/1.json
   def update
     respond_to do |format|
       if @note.update(note_params)
@@ -77,7 +76,6 @@ class NotesController < ApplicationController
     end
   end
 
-  # DELETE /notes/1 or /notes/1.json
   def destroy
     @note.destroy
 
@@ -112,12 +110,10 @@ class NotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_note
       @note = Note.find_by!(id: params[:id], user: current_user)
     end
 
-    # Only allow a list of trusted parameters through.
     def note_params
       params.require(:note).permit(:title, :content).merge(user_id: current_user.id)
     end

@@ -75,6 +75,15 @@ export const draculaTheme = EditorView.theme({
     color: config.foreground
   },
 
+  '.cm-completionIcon': {
+    paddingRight: '1rem',
+  },
+  '.cm-completionIcon-url::after': {
+    content: '"url"',
+    fontSize: '50%',
+    verticalAlign: 'middle',
+  },
+
   '.cm-tooltip': {
     border: `1px solid ${config.dropdownBorder}`,
     backgroundColor: config.dropdownBackground,

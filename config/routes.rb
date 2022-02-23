@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :notes do
     collection do
       get 'by_tag/*names', to: 'notes#by_tag', as: 'by_tag'
+      get :all, to: 'notes#all'
     end
     member do
       post :make_public, to: 'notes#make_public'
