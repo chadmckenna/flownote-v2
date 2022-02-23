@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :notes, dependent: :destroy
   has_many :tags, dependent: :destroy
+  has_many :folders, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

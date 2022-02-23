@@ -14,11 +14,6 @@ class NotesController < ApplicationController
     )
   end
 
-  def all
-    @notes = Note.where(user: current_user)
-    render :index
-  end
-
   def by_tag
     @nested_tag_names = params[:names].split('/')
     @tag_names = Tag.where(user: current_user).order('name ASC').map(&:name).uniq

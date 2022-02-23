@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :notes do
     collection do
       get 'by_tag/*names', to: 'notes#by_tag', as: 'by_tag'
-      get :all, to: 'notes#all'
     end
     member do
       post :make_public, to: 'notes#make_public'
@@ -16,6 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :folders
+
+  get '/links', to: 'links#index', as: 'links'
 
   get '~:user', to: 'shares#index', as: 'shares'
   get '~:user/n/:slug', to: 'shares#show', as: 'share'

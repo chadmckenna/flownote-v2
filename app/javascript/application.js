@@ -30,7 +30,11 @@ const setupEditor = () => {
     onUpdate,
     draculaTheme,
     draculaHighlightStyle,
-    autocompletion({ override: [noteLinkCompletion] }),
+    autocompletion({
+      override: [
+        noteLinkCompletion,
+      ]
+    }),
     EditorView.lineWrapping
   ]
 
