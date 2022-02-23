@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :folders
+
   get '~:user', to: 'shares#index', as: 'shares'
   get '~:user/n/:slug', to: 'shares#show', as: 'share'
   get '~:user/t/*names', to: 'shares#by_tag', as: 'shares_by_tag'

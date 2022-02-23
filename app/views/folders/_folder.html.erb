@@ -1,0 +1,19 @@
+<div id="<%= dom_id folder %>">
+  <h4><%= folder.name %></h4>
+
+  <% folder.files.each do |file| %>
+    <div class="user_file">
+      <% if file.representable? %>
+        <div><%= image_tag file.representation(resize_to_limit: [100, 100]), data: { title: file.filename } %></div>
+        <div>
+          <div><%= file.filename %></div>
+          <div><%= link_to "Download", rails_blob_path(file, disposition: "attachment") %></div>
+        </div>
+      <% else %>
+        <%= link_to rails_blob_path(file, disposition: "attachment") do %>
+          <%= image_tag "/apple-touch-icon.png", alt: "Download file" %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,8 +1,8 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
-import mermaid from "mermaid"
 
+import mermaid from "mermaid"
 import { draculaTheme, draculaHighlightStyle } from "extras/dracula-codemirror-theme"
 import { setupKeybindings } from "extras/keybindings"
 import { noteLinkCompletion } from "extras/auto-linking"
@@ -80,4 +80,3 @@ document.addEventListener('turbo:before-stream-render', async (event) => {
 setupLibraries()
 setupEditor()
 setupKeybindings()
-

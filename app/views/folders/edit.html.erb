@@ -1,0 +1,8 @@
+<nav>
+  <ul>
+    <li><%= link_to "View", @folder %></li>
+    <li><%= link_to "All folders", folders_path %></li>
+  </ul>
+</nav>
+
+<%= render "form", folder: @folder %>
