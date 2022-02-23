@@ -1,0 +1,9 @@
+<%= form_with(model: folder) do |form| %>
+  <p>
+    <%= form.file_field :files, multiple: true %>
+  </p>
+
+  <p>
+    <%= form.submit "Upload" %>
+  </p>
+<% end %>

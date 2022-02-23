@@ -1,0 +1,11 @@
+<%= render "form", folder: Folder.new %>
+
+<h4>Your folders</h4>
+
+<div id="folders">
+  <% @folders.each do |folder| %>
+    <p>
+      <%= link_to folder.name, folder %>
+    </p>
+  <% end %>
+</div>

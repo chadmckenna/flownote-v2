@@ -83,6 +83,11 @@ export const draculaTheme = EditorView.theme({
     fontSize: '50%',
     verticalAlign: 'middle',
   },
+  '.cm-completionIcon-img::after': {
+    content: '"img"',
+    fontSize: '50%',
+    verticalAlign: 'middle',
+  },
 
   '.cm-tooltip': {
     border: `1px solid ${config.dropdownBorder}`,
