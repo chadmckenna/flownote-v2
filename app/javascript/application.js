@@ -7,7 +7,9 @@ import { draculaTheme, draculaHighlightStyle } from "extras/dracula-codemirror-t
 import { setupKeybindings } from "extras/keybindings"
 
 import { basicSetup, EditorState, EditorView } from '@codemirror/basic-setup'
-import { markdown } from '@codemirror/lang-markdown'
+import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
+import { javascriptLanguage } from '@codemirror/lang-javascript'
+import { vim } from '@replit/codemirror-vim'
 
 const setupEditor = () => {
   const state = document.getElementById('editor-state')
@@ -20,9 +22,22 @@ const setupEditor = () => {
     }
   })
 
+  const extensions = [
+    markdown({ base: markdownLanguage }),
+    basicSetup,
+    onUpdate,
+    draculaTheme,
+    draculaHighlightStyle,
+    EditorView.lineWrapping
+  ]
+
+  const vimMode = !('ontouchstart' in document.documentElement && navigator.userAgent.match(/Mobi/));
+
+  if (vimMode) extensions.unshift(vim())
+
   const initialState = EditorState.create({
     doc: state.value,
-    extensions: [basicSetup, markdown(), onUpdate, draculaTheme, draculaHighlightStyle, EditorView.lineWrapping],
+    extensions: extensions,
   })
 
   const view = new EditorView({
