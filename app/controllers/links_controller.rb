@@ -15,7 +15,7 @@ class LinksController < ApplicationController
         {
           search_title: "#{folder.name}/#{file.filename}",
           title: file.filename,
-          url: url_for(file),
+          url: file.variable? ? url_for(file.variant(resize_to_limit: [768, 1024])) : url_for(file),
           type: file.content_type.match(/image/) ? 'img' : 'url'
         }
       end
