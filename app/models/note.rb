@@ -4,6 +4,8 @@ class Note < ApplicationRecord
   has_many :tags, dependent: :destroy
   has_one :history, dependent: :destroy
 
+  scope :shared, -> { where(public: true) }
+
   before_create :set_slug
   before_update :append_to_history, if: -> { will_save_change_to_attribute? :content }
   before_save :set_tags

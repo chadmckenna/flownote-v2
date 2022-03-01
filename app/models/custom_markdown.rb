@@ -57,6 +57,15 @@ module CustomMarkdown
       super options
     end
 
+    def link(link, title, content)
+      share_url = @share_user.get_share_url(link)
+      if share_url
+        return %(<a href="#{share_url}" title="#{title}">#{content}</a>)
+      else
+        return %(<a href="#{link}" title="#{title}">#{content}</a>)
+      end
+    end
+
     def paragraph(text)
       text.gsub!(Tag::TAG_REGEX, "<kbd><a href='/~#{@share_user.username}/t/\\1'>#\\1</a></kbd>")
       return %(<p>#{text}</p>)
