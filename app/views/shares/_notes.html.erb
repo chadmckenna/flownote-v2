@@ -1,7 +1,16 @@
 <% notes.each do |note| %>
-  <p>
+  <h3 style="margin-bottom: 0.2rem;">
     <%= link_to note.title, share_path(user: note.user.username, slug: note.slug) %>
-    <br>
-    <%= time_tag note.updated_at, time_ago(note.updated_at) %>
-  </p>
+  </h3>
+  <% unless note.tags.size.zero? %>
+    <div>
+      Categorized under
+      <% note.tags.each do |tag| %>
+        <kbd><%= link_to tag.name, shares_by_tag_path(names: tag.name) %></kbd>
+      <% end %>
+    </div>
+  <% end %>
+  <div>
+    Updated <%= time_tag note.updated_at, time_ago(note.updated_at) %> by <%= link_to "~#{note.user.username}", shares_path(user: note.user.username) %>
+  </div>
 <% end %>
