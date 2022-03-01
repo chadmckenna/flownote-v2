@@ -42,3 +42,4 @@ pin "@lezer/markdown", to: "https://ga.jspm.io/npm:@lezer/markdown@0.15.4/dist/i
 pin "mermaid", to: "https://ga.jspm.io/npm:mermaid@8.13.10/dist/mermaid.esm.min.mjs"
 pin "@replit/codemirror-vim", to: "https://ga.jspm.io/npm:@replit/codemirror-vim@0.19.0/dist/index.js"
 pin "@codemirror/stream-parser", to: "https://ga.jspm.io/npm:@codemirror/stream-parser@0.19.6/dist/index.js"
+pin "@rails/activestorage", to: "https://ga.jspm.io/npm:@rails/activestorage@7.0.2-2/app/assets/javascripts/activestorage.esm.js"

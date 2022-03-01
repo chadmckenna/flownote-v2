@@ -1,6 +1,6 @@
 <%= form_with(model: folder) do |form| %>
   <p>
-    <%= form.file_field :files, multiple: true %>
+    <%= form.file_field :files, multiple: true, direct_upload: true %>
   </p>
 
   <p>

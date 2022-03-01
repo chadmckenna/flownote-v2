@@ -1,6 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "extras/direct-upload"
 
 import mermaid from "mermaid"
 import { draculaTheme, draculaHighlightStyle } from "extras/dracula-codemirror-theme"
@@ -12,6 +13,7 @@ import { autocompletion } from '@codemirror/autocomplete'
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
 import { javascriptLanguage } from '@codemirror/lang-javascript'
 import { vim } from '@replit/codemirror-vim'
+
 
 const setupEditor = () => {
   const state = document.getElementById('editor-state')
