@@ -5,7 +5,7 @@ import "controllers"
 import mermaid from "mermaid"
 import { draculaTheme, draculaHighlightStyle } from "extras/dracula-codemirror-theme"
 import { setupKeybindings } from "extras/keybindings"
-import { noteLinkCompletion } from "extras/auto-linking"
+import { autoLinking } from "extras/auto-linking"
 
 import { basicSetup, EditorState, EditorView } from '@codemirror/basic-setup'
 import { autocompletion } from '@codemirror/autocomplete'
@@ -32,7 +32,7 @@ const setupEditor = () => {
     draculaHighlightStyle,
     autocompletion({
       override: [
-        noteLinkCompletion,
+        autoLinking(),
       ]
     }),
     EditorView.lineWrapping
