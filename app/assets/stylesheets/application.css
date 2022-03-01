@@ -52,6 +52,20 @@ nav ul li ul {
 .note:hover {
   background-color: #44475A40;
 }
+.note .private, .note .public {
+  margin-left: 0.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  display: inline-block;
+  border-radius: 50%;
+  opacity: 0.4;
+}
+.note .private {
+  background-color: green;
+}
+.note .public {
+  background-color: red;
+}
 
 .add_tag {
   opacity: 0.4;
