@@ -29,10 +29,10 @@
         </span>
       <% if user_signed_in? %>
         <span style="display: flex; justify-content: end;">
-          <li><%= link_to "🗒 Notes", notes_path, style: "margin-right: 0.4rem" %></li>
-          <li><%= link_to "🔍 Search", search_path, style: "margin-right: 0.4rem" %></li>
-          <li><%= link_to "🛠 Account", edit_user_registration_path(current_user), style: "margin-right: 0.4rem" %></li>
-          <li><%= button_to '🚪Logout', destroy_user_session_path, method: :delete, class: 'button_as_link' %></li>
+          <li><%= link_to "Notes", notes_path %></li>
+          <li><%= link_to "Files", folders_path %></li>
+          <li><%= link_to "Search", search_path %></li>
+          <li><%= link_to "Account", edit_user_registration_path(current_user) %></li>
         </span>
       <% elsif @share_user %>
         <li><%= link_to "~#{@share_user.username}'s public notes", shares_path(user: @share_user.username) %></li>

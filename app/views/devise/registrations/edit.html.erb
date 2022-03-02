@@ -1,6 +1,6 @@
 <nav>
   <ul>
-    <li><%= link_to "My Files", folders_path %></li>
+    <li><%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'button_as_link' %></li>
   </ul>
 </nav>
 

@@ -23,6 +23,9 @@
   display: inline-block;
   text-align: center;
 }
+.nav_main ul li a {
+  margin-left: 0.8rem;
+}
 
 @media screen and (max-width: 375px) {
   .nav_main ul li { font-size: 0.9rem }
