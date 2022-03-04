@@ -28,7 +28,6 @@ export const setupKeybindings = () => {
     }
 
     const submitEditForm = () => {
-      console.log('submitEditForm!')
       Object.values(document.forms).forEach((f) => {
         if (f.id === 'note_edit_form') {
           f.submit()
