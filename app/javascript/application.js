@@ -73,16 +73,44 @@ const setupLibraries = () => {
   }
 }
 
+const setupRenameLinks = () => {
+  const showLinks = document.querySelectorAll("a[data-file-id-show]")
+  const cancelLinks = document.querySelectorAll("a[data-file-id-cancel]")
+
+  showLinks.forEach((element) => {
+    element.addEventListener("click", (event) => {
+      event.preventDefault();
+      const renameForm = document.getElementById(element.dataset.fileIdShow)
+      const nameLink = document.getElementById(`show-${element.dataset.fileIdShow}`)
+      renameForm.style.display = 'block'
+      nameLink.style.display = 'none'
+    })
+  })
+
+  cancelLinks.forEach((element) => {
+    element.addEventListener("click", (event) => {
+      event.preventDefault();
+      const renameForm = document.getElementById(element.dataset.fileIdCancel)
+      const nameLink = document.getElementById(`show-${element.dataset.fileIdCancel}`)
+      renameForm.style.display = 'none'
+      nameLink.style.display = 'flex'
+    })
+  })
+}
+
 document.addEventListener('turbo:load', async (event) => {
   setupLibraries()
   setupEditor()
   setupKeybindings()
+  setupRenameLinks()
 })
 
 document.addEventListener('turbo:before-stream-render', async (event) => {
   setupLibraries()
 })
 
+
 setupLibraries()
 setupEditor()
 setupKeybindings()
+setupRenameLinks()

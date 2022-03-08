@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :folders do
     member do
       delete '/files/:file_id', to: 'folders#destroy_file', as: 'destroy_file_in'
+      put '/files/:file_id/rename', to: 'folders#rename_file', as: 'rename_file_in'
     end
   end
 

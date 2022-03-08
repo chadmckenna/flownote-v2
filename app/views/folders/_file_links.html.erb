@@ -1,5 +1,15 @@
 <div>
-  <div><%= file.filename %></div>
+  <div id=<%= "show-#{file.id}" %> style="display: flex; align-items: center; height: calc(2rem + 4px);"><a href="#" data-file-id-show=<%= file.id %>><%= file.filename %></a></div>
+  <div id=<%= file.id %> style="display: none">
+    <%= form_with url: "/folders/#{folder.id}/files/#{file.id}/rename", method: :put do |form| %>
+      <div style="display: flex; align-items: center;">
+        <%= form.text_field :filename, value: file.filename.to_s.gsub!(".#{file.filename.extension}", ''), placeholder: file.filename, minlength: 1, required: true  %>
+        <div>.<%= file.filename.extension %></div>
+        <%= form.submit "Rename", name: nil, style: "margin-left: 0.5rem" %>
+        <a href="#" data-file-id-cancel=<%= file.id %> style="margin-left: 0.5rem">Cancel</a>
+      </div>
+    <% end %>
+  </div>
   <div style="display: flex; margin-top: 0.5rem;">
     <%= button_to "Download", rails_blob_path(file, disposition: "attachment"), method: :get, style: "margin-right: 0.5rem" %>
     <%= button_to "Delete", destroy_file_in_folder_path(id: folder.id, file_id: file.id), method: :delete, style: "background-color: red", form: { data: { 'turbo-confirm': "Are you sure you want to delete #{file.filename}?" } } %>

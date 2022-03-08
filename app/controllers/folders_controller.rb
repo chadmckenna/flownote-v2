@@ -1,6 +1,6 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_folder, only: %i[ show edit update destroy destroy_file ]
+  before_action :set_folder, only: %i[ show edit update destroy destroy_file rename_file ]
 
   def index
     @folders = Folder.where(user: current_user)
@@ -55,7 +55,20 @@ class FoldersController < ApplicationController
       format.html { redirect_to folder_path(@folder), notice: "#{file.filename} was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
 
+  def rename_file
+    file = @folder.files.find(params[:file_id])
+
+    respond_to do |format|
+      if file.blob.update(filename: "#{file_params[:filename]}.#{file.filename.extension}")
+        format.html { redirect_to folder_url(@folder), notice: "File was successfully renamed." }
+        format.json { render :show, status: :ok, location: @folder }
+      else
+        format.html { render :show, status: :unprocessable_entity }
+        format.json { render json: file.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
@@ -65,5 +78,9 @@ class FoldersController < ApplicationController
 
     def folder_params
       params.require(:folder).permit(:name).merge(user_id: current_user.id)
+    end
+
+    def file_params
+      params.permit(:filename)
     end
 end
