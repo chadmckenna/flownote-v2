@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :folders
+  resources :folders do
+    member do
+      delete '/files/:file_id', to: 'folders#destroy_file', as: 'destroy_file_in'
+    end
+  end
 
   get '/links', to: 'links#index', as: 'links'
 

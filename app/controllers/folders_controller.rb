@@ -1,6 +1,6 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_folder, only: %i[ show edit update destroy ]
+  before_action :set_folder, only: %i[ show edit update destroy destroy_file ]
 
   def index
     @folders = Folder.where(user: current_user)
@@ -45,6 +45,17 @@ class FoldersController < ApplicationController
       format.html { redirect_to folders_url, notice: "Folder was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def destroy_file
+    file = @folder.files.find(params[:file_id])
+    file.purge
+
+    respond_to do |format|
+      format.html { redirect_to folder_path(@folder), notice: "#{file.filename} was successfully destroyed." }
+      format.json { head :no_content }
+    end
+
   end
 
   private
