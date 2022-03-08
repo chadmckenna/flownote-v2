@@ -10,9 +10,16 @@
           <div><%= link_to "Download", rails_blob_path(file, disposition: "attachment") %></div>
         </div>
       <% else %>
-        <%= link_to rails_blob_path(file, disposition: "attachment") do %>
-          <%= image_tag "/apple-touch-icon.png", alt: "Download file" %>
-        <% end %>
+        <div class="content_container">
+          <span style="position: absolute;">
+            <%= image_tag "/apple-touch-icon.png", width: '80px', height: '80px', alt: "Download file" %>
+            <span class="content_type">.<%= file.filename.extension %></span>
+          </span>
+        </div>
+        <div>
+          <div><%= file.filename %></div>
+          <div><%= link_to "Download", rails_blob_path(file, disposition: "attachment") %></div>
+        </div>
       <% end %>
     </div>
   <% end %>
