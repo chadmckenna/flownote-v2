@@ -5,7 +5,8 @@ module CustomMarkdown
     tables: true,
     strikethrough: true,
     space_after_headers: true,
-    fenced_code_blocks: true
+    fenced_code_blocks: true,
+    footnotes: true,
   }
 
   class CustomHTML < Redcarpet::Render::HTML

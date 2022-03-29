@@ -34,6 +34,12 @@
   }
 }
 
+sup {
+  left: 0.25rem;
+}
+sup:before { content: "\005B"; }
+sup:after { content: "\005D"; }
+
 nav ul li ul {
   max-height: 30rem;
   overflow-y: auto;
