@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Welcome to FlowNote v2
 
-Things you may want to cover:
+- Ruby on Rails 7
+- Ruby v.3
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Want to see it in production? Visit [FlowNote v2](https://2.flownote.app) to sign up and try it out.
