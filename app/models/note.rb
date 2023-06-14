@@ -57,7 +57,7 @@ class Note < ApplicationRecord
       history.content_diff.prepend diff
       history.save
     else
-      history = History.create(note_id: id, content_diff: diff)
+      History.create(note_id: id, content_diff: diff)
     end
   end
 

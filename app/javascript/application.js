@@ -14,7 +14,6 @@ import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
 import { javascriptLanguage } from '@codemirror/lang-javascript'
 import { vim } from '@replit/codemirror-vim'
 
-
 const setupEditor = () => {
   const state = document.getElementById('editor-state')
 
@@ -114,3 +113,4 @@ setupLibraries()
 setupEditor()
 setupKeybindings()
 setupRenameLinks()
+mermaid.initialize()
