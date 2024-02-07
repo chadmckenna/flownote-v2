@@ -6,7 +6,7 @@ class Note < ApplicationRecord
 
   scope :shared, -> { where(public: true) }
 
-  before_create :set_slug
+  before_create :set_slug, :set_sharable_key
   before_update :append_to_history, if: -> { will_save_change_to_attribute? :content }
   before_save :set_tags
 
@@ -21,7 +21,7 @@ class Note < ApplicationRecord
 
   def to_share_html
     Redcarpet::Markdown.new(
-      CustomMarkdown::CustomShareHTML.new({ prettify: true }, user),
+      CustomMarkdown::CustomShareHTML.new({ prettify: true }, user, self.public),
       CustomMarkdown::DEFAULTS
     )
       .render(content)
@@ -66,5 +66,9 @@ class Note < ApplicationRecord
       self.slug = SecureRandom.alphanumeric(6)
       break unless Note.where(slug: slug).exists?
     end
+  end
+
+  def set_sharable_key
+    self.sharable_key = SecureRandom.uuid
   end
 end

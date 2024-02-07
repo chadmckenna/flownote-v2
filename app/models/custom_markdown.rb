@@ -53,8 +53,9 @@ module CustomMarkdown
   end
 
   class CustomShareHTML < CustomHTML
-    def initialize(options, share_user)
+    def initialize(options, share_user, is_public)
       @share_user = share_user
+      @is_public = is_public
       super options
     end
 
@@ -68,7 +69,11 @@ module CustomMarkdown
     end
 
     def paragraph(text)
-      text.gsub!(Tag::TAG_REGEX, "<kbd><a href='/~#{@share_user.username}/t/\\1'>#\\1</a></kbd>")
+      if @is_public
+        text.gsub!(Tag::TAG_REGEX, "<kbd><a href='/~#{@share_user.username}/t/\\1'>#\\1</a></kbd>")
+      else
+        text.gsub!(Tag::TAG_REGEX, "<kbd>#\\1</kbd>")
+      end
       return %(<p>#{text}</p>)
     end
   end

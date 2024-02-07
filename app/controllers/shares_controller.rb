@@ -4,7 +4,12 @@ class SharesController < ApplicationController
   include Paginate
 
   def show
-    @note = Note.find_by!(slug: params[:slug], user: @share_user, public: true)
+    @note
+    if params[:slug].to_s.match /\h{8}-(\h{4}-){3}\h{12}/
+      @note = Note.find_by!(sharable_key: params[:slug], user: @share_user)
+    else
+      @note = Note.find_by!(slug: params[:slug], user: @share_user, public: true)
+    end
 
     respond_to do |format|
       format.html
