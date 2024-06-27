@@ -52,6 +52,7 @@ gem "redcarpet"
 gem "devise"
 gem "textacular"
 gem "diffy"
+gem "rubyzip"
 
 gem "aws-sdk-s3"
 

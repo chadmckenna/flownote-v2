@@ -277,6 +277,7 @@ DEPENDENCIES
   rails (~> 7.0.2)
   redcarpet
   redis (~> 4.0)
+  rubyzip
   selenium-webdriver
   sprockets-rails
   stimulus-rails
