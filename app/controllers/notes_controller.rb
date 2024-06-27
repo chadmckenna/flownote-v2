@@ -19,28 +19,17 @@ class NotesController < ApplicationController
   def export
     notes = Note.includes(:tags).where(user: current_user).order('created_at DESC')
 
-    export_filename = 'archive.zip'
-    temp_export = Tempfile.new(export_filename)
-
-    begin
-      Zip::OutputStream.open(temp_export) { |z| }
-
-      Zip::File.open(temp_export.path, Zip::File::CREATE) do |zip|
-        notes.each do |note|
-          name = "#{note.title.gsub(/[^0-9a-zA-Z]/, '').underscore}.md"
-          md_file = Tempfile.new(name)
-          md_file.write(note.content)
-          md_file.close
-          zip.add(name, md_file.path)
-        end
+    zip_filestream = Zip::OutputStream.write_buffer do |zio|
+      notes.each do |note|
+        name = "#{note.title.gsub(/[^0-9a-zA-Z]/, '').underscore}.md"
+        zio.put_next_entry(name)
+        zio.write note.content
       end
-
-      zip_data = File.read(temp_export.path)
-      send_data(zip_data, type: 'application/zip', disposition: 'attachment', filename: export_filename)
-    ensure 
-      temp_export.close
-      temp_export.unlink
     end
+
+    zip_filestream.rewind
+
+    send_data zip_filestream.read, filename: "#{DateTime.now.to_i}_archive.zip"
   end
 
   def by_tag
