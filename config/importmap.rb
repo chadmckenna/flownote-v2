@@ -39,7 +39,7 @@ pin "@lezer/html", to: "https://ga.jspm.io/npm:@lezer/html@0.15.0/dist/index.es.
 pin "@lezer/javascript", to: "https://ga.jspm.io/npm:@lezer/javascript@0.15.3/dist/index.es.js"
 pin "@lezer/lr", to: "https://ga.jspm.io/npm:@lezer/lr@0.15.7/dist/index.js"
 pin "@lezer/markdown", to: "https://ga.jspm.io/npm:@lezer/markdown@0.15.4/dist/index.js"
-pin "mermaid", to: "https://cdn.jsdelivr.net/npm/mermaid@10.8.0/+esm"
+pin "mermaid", to: "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/+esm"
 pin "@replit/codemirror-vim", to: "https://ga.jspm.io/npm:@replit/codemirror-vim@0.19.0/dist/index.js"
 pin "@codemirror/stream-parser", to: "https://ga.jspm.io/npm:@codemirror/stream-parser@0.19.6/dist/index.js"
 pin "@rails/activestorage", to: "https://ga.jspm.io/npm:@rails/activestorage@7.0.2-2/app/assets/javascripts/activestorage.esm.js"
