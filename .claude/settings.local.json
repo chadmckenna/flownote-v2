@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bundle exec rake:*)",
+      "Bash(ruby --version)",
+      "Bash(bundle update)",
+      "Bash(rvm use:*)",
+      "Bash(rails console:*)",
+      "Bash(rails generate:*)"
+    ],
+    "deny": []
+  }
+}
