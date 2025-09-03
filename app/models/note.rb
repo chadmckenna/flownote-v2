@@ -1,8 +1,15 @@
 class Note < ApplicationRecord
+  include PgSearch::Model
+
   broadcasts
   belongs_to :user
   has_many :tags, dependent: :destroy
   has_one :history, dependent: :destroy
+
+  pg_search_scope :search, against: [:title, :content],
+    using: {
+      tsearch: { prefix: true }
+    }
 
   scope :shared, -> { where(public: true) }
 

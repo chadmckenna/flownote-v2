@@ -3,6 +3,6 @@ class SearchesController < ApplicationController
 
   def search
     @query = params[:query]
-    @notes = Note.where(user: current_user).basic_search(@query)
+    @notes = Note.where(user: current_user).search(@query)
   end
 end
